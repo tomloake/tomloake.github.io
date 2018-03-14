@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Native Web Component</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <script src="require.js"></script> -->
+    <!-- Load the polyfill so that this works in browsers that don't yet have Custom Elements -->
+    <!--     <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script> -->    
+        <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-hi-sd-ce.js"></script>
+<!--     <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-loader.js"></script> -->
+    <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-lite.js"></script> -->
+    <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/custom-elements-es5-adapter.js"></script> -->
+    <!-- Load the custom element definition -->
+    <!-- <script src="native-web-component.js"></script> -->
+    
+</head>
+
+<body onload="addEvent()">
+    <header>
+        <h1>
+        spektrix-donate-predefined
+      </h1>
+    </header>
+    <main>
+        <p>
+            This is a custom element that takes an emoji and makes it happy when you hover it!
+        </p>
+        <native-web-component id="dave" id="firstDonate" data-system-name="demo2" data-fund-id="2603AMKKPMCKTPCPQBBCPVLVKTNCTTMPQ">
+            <div slot="slot">Slot donation amount= £
+                <span slot="slot" data-display-donation-amount></span>
+            </div>
+            <button slot="slot" id="donate1" data-donate-amount="0.001">£0.001</button>
+            <button slot="slot" id="donate2" data-donate-amount="10">£10</button>
+            <button slot="slot" id="donate3" data-donate-amount="20">£20</button>
+            <button slot="slot" id="donate3" data-donate-amount="30">£30</button>
+            <button slot="slot" id="donate3" data-donate-amount="steve">£steve</button>
+            <div slot="slot" id="annoying">
+                        <button slot="slot" data-submit-donation>Post donation</button>
+                    </div>
+            <div id="steve" slot="slot" style="display: none;" success-container>STEVE STEVE STEVE success-container</div>
+            <div slot="slot" style="display: none;" fail-container> DAVE DAVE DAVE fail-container</div>
+            <div slot="slot" feedback-container></div>
+        </native-web-component>
+    </main>
+    <!-- <script src="native-web-component-es5.js"></script> -->
+    <script src="native-web-component.js" type="module"></script>
+    <script>
+      function addEvent() {
+      var component = document.getElementById("dave");
+      console.log('component ' + component);
+      component.addEventListener('success', function (e) {console.log('event',e)})
+      }
+    </script>
+</body>
+
+</html>
