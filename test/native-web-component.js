@@ -213,10 +213,17 @@ class NativeWebComponent extends SpektrixElementClass {
 
     // Which attributes we care about when they change. This makes sure
     // the internal property is synced when the HTML attribute changes.
-    static get observedAttributes() { return ['data-system-name', 'data-fund-id']; }
+    static get observedAttributes() { return ['data-system-name', 'data-fund-id', 'data-next-step']; }
     attributeChangedCallback(attr, oldValue, newValue) {
         // if (oldValue !== newValue)
         //     this[attr] = newValue;
+
+        if (attr === 'data-next-step') {
+            console.log('hit');
+            this.nextStep = newValue;
+        }
+
+
         if (attr === 'data-system-name') {
             this.systemName = newValue;
         } else if (attr === 'data-fund-id') {

@@ -6,53 +6,87 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <script src="require.js"></script> -->
     <!-- Load the polyfill so that this works in browsers that don't yet have Custom Elements -->
-    <!--     <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script> -->    
-        <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-hi-sd-ce.js"></script>
-<!--     <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-loader.js"></script> -->
+    <!--     <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script> -->
+    <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-hi-sd-ce.js"></script> -->
+    <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-loader.js"></script>
     <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-lite.js"></script> -->
     <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/custom-elements-es5-adapter.js"></script> -->
-    <!-- Load the custom element definition -->
-    <!-- <script src="native-web-component.js"></script> -->
-    
+
+    <script>
+        // https://gist.github.com/samthor/64b114e4a4f539915a95b91ffd340acc
+
+        (function() {
+  var d = document;
+  var c = d.createElement('script');
+  if (!('noModule' in c) && 'onbeforeload' in c) {
+    var s = false;
+    d.addEventListener('beforeload', function(e) {
+      if (e.target === c) {
+        s = true;
+      } else if (!e.target.hasAttribute('nomodule') || !s) {
+        return;
+      }
+      e.preventDefault();
+    }, true);
+
+    c.type = 'module';
+    c.src = '.';
+    d.head.appendChild(c);
+    c.remove();
+  }
+}());
+
+    </script>
+
+    <script type="module">
+        window.addEventListener('WebComponentsReady', function(e) { 
+            var scriptForES2015 = document.createElement('script'); 
+            scriptForES2015.src = "./dist/native-web-component-es2015.js"; 
+            scriptForES2015.type = "module"; 
+            document.head.appendChild(scriptForES2015); console.log('scripts added'); });
+    </script>
+    <script nomodule>
+    window.addEventListener('WebComponentsReady', function(e) {
+        var scriptForES5 = document.createElement('script');
+        scriptForES5.src = "./dist/native-web-component-es5.js";
+        scriptForES5.setAttribute("nomodule", "");
+        document.head.appendChild(scriptForES5);
+    });
+    </script>
 </head>
 
 <body onload="addEvent()">
+    <style>
+    button {
+        color: blue;
+    }
+    </style>
     <header>
         <h1>
         spektrix-donate-predefined
       </h1>
     </header>
     <main>
-        <p>
-            This is a custom element that takes an emoji and makes it happy when you hover it!
-        </p>
-        <native-web-component id="dave" id="firstDonate" data-system-name="demo2" data-fund-id="2603AMKKPMCKTPCPQBBCPVLVKTNCTTMPQ">
-            <div slot="slot">Slot donation amount= £
-                <span slot="slot" data-display-donation-amount></span>
-            </div>
-            <button slot="slot" id="donate1" data-donate-amount="0.001">£0.001</button>
-            <button slot="slot" id="donate2" data-donate-amount="10">£10</button>
-            <button slot="slot" id="donate3" data-donate-amount="20">£20</button>
-            <button slot="slot" id="donate3" data-donate-amount="30">£30</button>
-            <button slot="slot" id="donate3" data-donate-amount="steve">£steve</button>
-            <div slot="slot" id="annoying">
-                        <button slot="slot" data-submit-donation>Post donation</button>
-                    </div>
-            <div id="steve" slot="slot" style="display: none;" success-container>STEVE STEVE STEVE success-container</div>
-            <div slot="slot" style="display: none;" fail-container> DAVE DAVE DAVE fail-container</div>
-            <div slot="slot" feedback-container></div>
-        </native-web-component>
+        <spektrix-donate-predefined system-name="demo2" fund-id="2603AMKKPMCKTPCPQBBCPVLVKTNCTTMPQ">
+            <span slot="slot">DONATE THIS MUCH PLEASE! £</span><span slot="slot" class="amount" data-display-donation-amount>0</span>
+            <br slot="slot">
+            <button slot="slot" class="btn button-primary" data-donate-amount="10">£10</button>
+            <button slot="slot" class="btn button-primary" data-donate-amount="20">£20</button>
+            <button slot="slot" class="btn button-primary" data-donate-amount="30">£30</button>
+            <button slot="slot" class="btn button-primary" data-donate-amount="0.001">0.001</button>
+            <button slot="slot" data-submit-donation>Donate</button>
+            <div slot="slot" data-success-container style="display: none;">YAY DEMO SUCCESS</div>
+            <div slot="slot" data-fail-container style="display: none;">BOO THIS ROOM IS SWEATY FUCK YOU FOR KEEPING US IN HERE</div>
+        </spektrix-donate-predefined>
     </main>
     <!-- <script src="native-web-component-es5.js"></script> -->
-    <script src="native-web-component.js" type="module"></script>
+    <!-- <script src="native-web-component.js" type="module"></script> -->
     <script>
-      function addEvent() {
-      var component = document.getElementById("dave");
-      console.log('component ' + component);
-      component.addEventListener('success', function (e) {console.log('event',e)})
-      }
+    function addEvent() {
+        var component = document.querySelector('spektrix-donate-predefined');
+        component.addEventListener('success', function(e) { console.log('event', e) })
+    }
     </script>
 </body>
 
