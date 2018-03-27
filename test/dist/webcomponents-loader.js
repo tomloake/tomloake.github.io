@@ -15,6 +15,8 @@
   window.WebComponents = window.WebComponents || {};
   var name = 'webcomponents-loader.js';
   // Feature detect which polyfill needs to be imported.
+  var polyfills = [];
+  
   if (!('attachShadow' in Element.prototype && 'getRootNode' in Element.prototype) ||
     (window.ShadyDOM && window.ShadyDOM.force) || (!window.customElements || window.customElements.forcePolyfill)) {
     polyfills.push('sd-ce');

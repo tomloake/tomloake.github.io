@@ -43,7 +43,7 @@
         var polyfillForES2015 = document.createElement('script');
         
         polyfillForES2015.src = "./dist/webcomponents-loader.js";
-        polyfillForES2015.setAttribute("nomodule", "");
+        polyfillForES2015.setAttribute("module", "");
         polyfillForES2015.setAttribute("id", "spx-polyfills");
         document.head.appendChild(polyfillForES2015);
     </script>
@@ -62,6 +62,7 @@
 
     <script type="module">
         window.addEventListener('WebComponentsReady', function(e) {
+        console.log('Predefined');
         var scriptForES2015 = document.createElement('script'); 
         scriptForES2015.src = "./dist/spektrix-donate-predefined-es2015.js"; 
         scriptForES2015.type = "module"; 
