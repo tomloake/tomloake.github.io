@@ -9,51 +9,107 @@
     <!-- Load the polyfill so that this works in browsers that don't yet have Custom Elements -->
     <!--     <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script> -->
     <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-hi-sd-ce.js"></script> -->
-    <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-loader.js"></script>
+    <!-- <script src="./dist/webcomponents-loader.js"></script> -->
     <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-lite.js"></script> -->
     <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/custom-elements-es5-adapter.js"></script> -->
-
     <script>
-        // https://gist.github.com/samthor/64b114e4a4f539915a95b91ffd340acc
+    // https://gist.github.com/samthor/64b114e4a4f539915a95b91ffd340acc
 
-        (function() {
-  var d = document;
-  var c = d.createElement('script');
-  if (!('noModule' in c) && 'onbeforeload' in c) {
-    var s = false;
-    d.addEventListener('beforeload', function(e) {
-      if (e.target === c) {
-        s = true;
-      } else if (!e.target.hasAttribute('nomodule') || !s) {
-        return;
-      }
-      e.preventDefault();
-    }, true);
+    (function() {
+        var d = document;
+        var c = d.createElement('script');
+        if (!('noModule' in c) && 'onbeforeload' in c) {
+            var s = false;
+            d.addEventListener('beforeload', function(e) {
+                if (e.target === c) {
+                    s = true;
+                } else if (!e.target.hasAttribute('nomodule') || !s) {
+                    return;
+                }
+                e.preventDefault();
+            }, true);
 
-    c.type = 'module';
-    c.src = '.';
-    d.head.appendChild(c);
-    c.remove();
-  }
-}());
-
+            c.type = 'module';
+            c.src = '.';
+            d.head.appendChild(c);
+            c.remove();
+        }
+    }());
     </script>
 
+    <!-- Spektrix Polyfills -->
+
     <script type="module">
-        window.addEventListener('WebComponentsReady', function(e) { 
-            var scriptForES2015 = document.createElement('script'); 
-            scriptForES2015.src = "./dist/native-web-component-es2015.js"; 
-            scriptForES2015.type = "module"; 
-            document.head.appendChild(scriptForES2015); console.log('scripts added'); });
+        var polyfillForES2015 = document.createElement('script');
+        
+        polyfillForES2015.src = "./dist/webcomponents-loader.js";
+        polyfillForES2015.setAttribute("nomodule", "");
+        polyfillForES2015.setAttribute("id", "spx-polyfills");
+        document.head.appendChild(polyfillForES2015);
+    </script>
+    <script nomodule>
+        console.log('es5 polyfill')
+        var polyfillForES5 = document.createElement('script');
+        
+        polyfillForES5.src = "./dist/webcomponents-loader-es5.js";
+        polyfillForES5.setAttribute("nomodule", "");
+        polyfillForES5.setAttribute("id", "spx-polyfills");
+        document.head.appendChild(polyfillForES5);    </script>
+
+    <!-- /Spektrix Polyfills -->
+
+    <!-- Spektrix Donate Predefined -->
+
+    <script type="module">
+        window.addEventListener('WebComponentsReady', function(e) {
+        var scriptForES2015 = document.createElement('script'); 
+        scriptForES2015.src = "./dist/spektrix-donate-predefined-es2015.js"; 
+        scriptForES2015.type = "module"; 
+        document.head.appendChild(scriptForES2015); });
     </script>
     <script nomodule>
     window.addEventListener('WebComponentsReady', function(e) {
         var scriptForES5 = document.createElement('script');
-        scriptForES5.src = "./dist/native-web-component-es5.js";
+        scriptForES5.src = "./dist/spektrix-donate-predefined-es5.js";
         scriptForES5.setAttribute("nomodule", "");
         document.head.appendChild(scriptForES5);
     });
     </script>
+
+    <!-- /Spektrix Donate Predefined -->
+
+    <!-- Spektrix Donate Basic -->
+
+    <script type="module">
+        window.addEventListener('WebComponentsReady', function(e) { var scriptForES2015 = document.createElement('script'); scriptForES2015.src = "./dist/spektrix-donate-basic-es2015.js"; scriptForES2015.type = "module"; document.head.appendChild(scriptForES2015); });
+    </script>
+    <script nomodule>
+    window.addEventListener('WebComponentsReady', function(e) {
+        var scriptForES5 = document.createElement('script');
+        scriptForES5.src = "./dist/spektrix-donate-basic-es5.js";
+        scriptForES5.setAttribute("nomodule", "");
+        document.head.appendChild(scriptForES5);
+    });
+    </script>
+
+    <!-- /Spektrix Donate Basic -->
+
+    <!-- Spektrix Donate Cumulative -->
+
+    <script type="module">
+    window.addEventListener('WebComponentsReady', function(e) { var scriptForES2015 = document.createElement('script'); scriptForES2015.src = "./dist/spektrix-donate-cumulative-es2015.js"; scriptForES2015.type = "module"; document.head.appendChild(scriptForES2015); });
+    </script>
+    <script nomodule>
+    window.addEventListener('WebComponentsReady', function(e) {
+        var scriptForES5 = document.createElement('script');
+        scriptForES5.src = "./dist/spektrix-donate-cumulative-es5.js";
+        scriptForES5.setAttribute("nomodule", "");
+        document.head.appendChild(scriptForES5);
+    });
+    </script>
+
+    <!-- /Spektrix Donate Cumulative -->
+
 </head>
 
 <body onload="addEvent()">
@@ -61,25 +117,65 @@
     button {
         color: blue;
     }
+
+    section {
+        border: 1px solid black;
+        margin-bottom: 20px;
+    }
     </style>
     <header>
         <h1>
-        spektrix-donate-predefined
+        Spektrix Native Web Components
       </h1>
     </header>
     <main>
-        <spektrix-donate-predefined system-name="demo2" fund-id="2603AMKKPMCKTPCPQBBCPVLVKTNCTTMPQ">
-            <span slot="slot">DONATE THIS MUCH PLEASE! £</span><span slot="slot" class="amount" data-display-donation-amount>0</span>
-            <br slot="slot">
-            <button slot="slot" class="btn button-primary" data-donate-amount="10">£10</button>
-            <button slot="slot" class="btn button-primary" data-donate-amount="20">£20</button>
-            <button slot="slot" class="btn button-primary" data-donate-amount="30">£30</button>
-            <button slot="slot" class="btn button-primary" data-donate-amount="0.001">0.001</button>
-            <button slot="slot" data-submit-donation>Donate</button>
-            <div slot="slot" data-success-container style="display: none;">YAY DEMO SUCCESS</div>
-            <div slot="slot" data-fail-container style="display: none;">BOO THIS ROOM IS SWEATY FUCK YOU FOR KEEPING US IN HERE</div>
-        </spektrix-donate-predefined>
+        vlopp
+        <section>
+            <spektrix-donate-predefined system-name="demo2" fund-id="2603AMKKPMCKTPCPQBBCPVLVKTNCTTMPQ">
+                <span slot="slot"><h2 slot="slot">spektrix-donate-predefined </h2>DONATE THIS MUCH PLEASE! £</span><span slot="slot" class="amount" data-display-donation-amount>0</span>
+                <br slot="slot">
+                <button slot="slot" class="btn button-primary" data-donate-amount="10">£10</button>
+                <button slot="slot" class="btn button-primary" data-donate-amount="20">£20</button>
+                <button slot="slot" class="btn button-primary" data-donate-amount="30">£30</button>
+                <button slot="slot" class="btn button-primary" data-donate-amount="0.001">0.001</button>
+                <button slot="slot" data-submit-donation>Donate</button>
+                <button slot="slot" data-clear-donation>Clear Donation</button>
+                <div slot="slot" data-success-container style="display: none;">YAY DEMO SUCCESS</div>
+                <div slot="slot" data-fail-container style="display: none;">BOO THIS didn't work</div>
+            </spektrix-donate-predefined>
+        </section>
+        <section>
+            <spektrix-donate-basic system-name="demo2" fund-id="2603AMKKPMCKTPCPQBBCPVLVKTNCTTMPQ">
+                <span slot="slot"><h2 slot="slot">spektrix-donate-basic </h2>DONATE THIS MUCH PLEASE! £</span><span slot="slot" class="amount" data-display-donation-amount>0</span>
+                <br slot="slot">
+                <input type="text" slot="slot" data-custom-donation-input>
+                <input type="text" slot="slot" data-custom-donation-input2>
+                <input type="text" slot="slot" value="dave" data-custom-donation-input>
+                
+                <button slot="slot" data-submit-donation>Donate</button>
+                <div slot="slot" data-success-container style="display: none;">YAY DEMO SUCCESS</div>
+                <div slot="slot" data-fail-container style="display: none;">BOO THIS didn't work</div>
+            </spektrix-donate-basic>
+        </section>
+        <section>
+            <spektrix-donate-cumulative system-name="demo2" fund-id="2603AMKKPMCKTPCPQBBCPVLVKTNCTTMPQ">
+                <span slot="slot"><h2 slot="slot">spektrix-donate-cumulative </h2>DONATE THIS MUCH PLEASE! £</span><span slot="slot" class="amount" data-display-donation-amount>0</span>
+                <br slot="slot">
+                <button slot="slot" class="btn button-primary" data-donate-amount="10">£10</button>
+                <button slot="slot" class="btn button-primary" data-donate-amount="20">£20</button>
+                <button slot="slot" class="btn button-primary" data-donate-amount="30">£30</button>
+                <button slot="slot" class="btn button-primary" data-donate-amount="0.001">0.001</button>
+                <button slot="slot" data-submit-donation>Donate</button>
+                <button slot="slot" data-clear-donation>Clear Donation</button>
+                <div slot="slot" data-success-container style="display: none;">YAY DEMO SUCCESS</div>
+                <div slot="slot" data-fail-container style="display: none;">BOO THIS didn't work</div>
+            </spektrix-donate-cumulative>
+        </section>
+
     </main>
+
+
+
     <!-- <script src="native-web-component-es5.js"></script> -->
     <!-- <script src="native-web-component.js" type="module"></script> -->
     <script>
