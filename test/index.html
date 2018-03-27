@@ -62,19 +62,19 @@
 
     <script type="module">
         window.addEventListener('WebComponentsReady', function(e) {
-        console.log('Predefined');
-        var scriptForES2015 = document.createElement('script'); 
-        scriptForES2015.src = "./dist/spektrix-donate-predefined-es2015.js"; 
-        scriptForES2015.type = "module"; 
-        document.head.appendChild(scriptForES2015); });
+            var scriptForES2015 = document.createElement('script'); 
+            scriptForES2015.src = "./dist/spektrix-donate-predefined-es2015.js"; 
+            scriptForES2015.type = "module"; 
+            document.head.appendChild(scriptForES2015); 
+        });
     </script>
     <script nomodule>
-    window.addEventListener('WebComponentsReady', function(e) {
-        var scriptForES5 = document.createElement('script');
-        scriptForES5.src = "./dist/spektrix-donate-predefined-es5.js";
-        scriptForES5.setAttribute("nomodule", "");
-        document.head.appendChild(scriptForES5);
-    });
+        window.addEventListener('WebComponentsReady', function(e) {
+            var scriptForES5 = document.createElement('script');
+            scriptForES5.src = "./dist/spektrix-donate-predefined-es5.js";
+            scriptForES5.setAttribute("nomodule", "");
+            document.head.appendChild(scriptForES5);
+        });
     </script>
 
     <!-- /Spektrix Donate Predefined -->
