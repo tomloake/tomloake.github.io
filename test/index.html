@@ -9,7 +9,7 @@
     <!-- Load the polyfill so that this works in browsers that don't yet have Custom Elements -->
     <!--     <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script> -->
     <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-hi-sd-ce.js"></script> -->
-    <!-- <script src="./dist/webcomponents-loader.js"></script> -->
+    <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-loader.js"></script>
     <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-lite.js"></script> -->
     <!-- <script src="https://rawgit.com/webcomponents/webcomponentsjs/master/custom-elements-es5-adapter.js"></script> -->
     <script>
@@ -37,44 +37,18 @@
     }());
     </script>
 
-    <!-- Spektrix Polyfills -->
-
-    <script type="module">
-        var polyfillForES2015 = document.createElement('script');
-        
-        polyfillForES2015.src = "./dist/webcomponents-loader.js";
-        polyfillForES2015.setAttribute("module", "");
-        polyfillForES2015.setAttribute("id", "spx-polyfills");
-        document.head.appendChild(polyfillForES2015);
-    </script>
-    <script nomodule>
-        console.log('es5 polyfill')
-        var polyfillForES5 = document.createElement('script');
-        
-        polyfillForES5.src = "./dist/webcomponents-loader-es5.js";
-        polyfillForES5.setAttribute("nomodule", "");
-        polyfillForES5.setAttribute("id", "spx-polyfills");
-        document.head.appendChild(polyfillForES5);    </script>
-
-    <!-- /Spektrix Polyfills -->
-
     <!-- Spektrix Donate Predefined -->
 
     <script type="module">
-        window.addEventListener('WebComponentsReady', function(e) {
-            var scriptForES2015 = document.createElement('script'); 
-            scriptForES2015.src = "./dist/spektrix-donate-predefined-es2015.js"; 
-            scriptForES2015.type = "module"; 
-            document.head.appendChild(scriptForES2015); 
-        });
+        window.addEventListener('WebComponentsReady', function(e) { var scriptForES2015 = document.createElement('script'); scriptForES2015.src = "./dist/spektrix-donate-predefined-es2015.js"; scriptForES2015.type = "module"; document.head.appendChild(scriptForES2015); });
     </script>
     <script nomodule>
-        window.addEventListener('WebComponentsReady', function(e) {
-            var scriptForES5 = document.createElement('script');
-            scriptForES5.src = "./dist/spektrix-donate-predefined-es5.js";
-            scriptForES5.setAttribute("nomodule", "");
-            document.head.appendChild(scriptForES5);
-        });
+    window.addEventListener('WebComponentsReady', function(e) {
+        var scriptForES5 = document.createElement('script');
+        scriptForES5.src = "./dist/spektrix-donate-predefined-es5.js";
+        scriptForES5.setAttribute("nomodule", "");
+        document.head.appendChild(scriptForES5);
+    });
     </script>
 
     <!-- /Spektrix Donate Predefined -->
@@ -130,7 +104,6 @@
       </h1>
     </header>
     <main>
-        vlopp
         <section>
             <spektrix-donate-predefined system-name="demo2" fund-id="2603AMKKPMCKTPCPQBBCPVLVKTNCTTMPQ">
                 <span slot="slot"><h2 slot="slot">spektrix-donate-predefined </h2>DONATE THIS MUCH PLEASE! £</span><span slot="slot" class="amount" data-display-donation-amount>0</span>
