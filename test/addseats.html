@@ -10,7 +10,7 @@
 
     <button>add Tickets</button>
 
-    <script>
+    <!-- <script>
 
     var requestBody = [{
         instance: "12201AVGSVDJSKHNLNDGDHCNLJPBPLMHR",
@@ -35,8 +35,35 @@
 
         var submitBtn = document.querySelector('button');
         submitBtn.addEventListener('click', () => {submitSeats(requestBody)});
+</script> -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+<script>
+    $json_data = JSON.stringify(
+            [{
+                instance: "12201AVGSVDJSKHNLNDGDHCNLJPBPLMHR",
+                seat: "2834",
+                type: "1412ADMSVPVVQHCGQRRRCPNLBSMKQQJSC"
+            }]);
+        function sendPost() {
+            $.ajax({
+                type: "POST",
+                url: "https://system.spektrix.com/demo2/api/v3/basket/tickets/",
+                headers: { 'Content-Type': 'application/json' },
+                data: $json_data,
+                success: success,
+            });
+        }
+
+        function success(result) {
+            console.log(result);
+        }
+
+        $(document).ready(function () {
+            sendPost();
+        });
 </script>
 
-    
 </body>
 </html>
