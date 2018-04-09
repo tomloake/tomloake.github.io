@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add to basket from webpage</title>
+</head>
+<body>
+
+    <button>add Tickets</button>
+
+    <script>
+
+    var requestBody = [{
+        instance: "12201AVGSVDJSKHNLNDGDHCNLJPBPLMHR",
+        seat: "2834",
+        ticketType: "1412ADMSVPVVQHCGQRRRCPNLBSMKQQJSC"
+    }]
+
+    function submitSeats(opts) {
+            fetch('https://system.spektrix.com/demo2/api/v3/basket/tickets', {
+                credentials: 'include',
+                method: 'post',
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify(opts)
+            }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                console.log('seats in basket:', data);
+            });
+        }
+
+        var submitBtn = document.querySelector('button');
+        submitBtn.addEventListener('click', submitSeats(requestBody));
+</script>
+
+    
+</body>
+</html>
