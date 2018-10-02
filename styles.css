@@ -107,3 +107,7 @@ body {
   margin-left: 1em;
   margin-right: 1em;
 }
+
+.definitely-testing-code-coverage {
+  color: rebeccapurple;
+}
