@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Test page with iframey ness</title>
 </head>
+
 <body>
-	<h1>THIS IS A FUCKING WEBPAGE</h1>
-	<iframe src="https://system.spektrix.com/demo2/website/basket2.aspx" frameborder="0"></iframe>
-	
+	<h1>THIS IS A WEBPAGE</h1>
+	<iframe src="https://system.spektrix.com/demo4/website/basket2.aspx" frameborder="0" width="800" height="1000"></iframe>
+
+
+
+	<!-- <script>
+		function checkPageHasStorageAccess() {
+			var promise = document.hasStorageAccess();
+			promise.then(
+				function (hasAccess) {
+					console.log('this page has storage access', hasAccess)
+				},
+				function (reason) {
+					console.log('this page does not have storage access', reason)
+				}
+			);
+		}
+
+		function makeRequestWithUserGesture() {
+			var promise = document.requestStorageAccess();
+			promise.then(
+				function () {
+					// Storage access was granted.
+					console.log('theoretically,  3rd party request granted')
+				},
+				function () {
+					// Storage access was denied.
+					console.log('3rd party request granted denied')
+				}
+			);
+		}
+
+		var enableStorageAccessButton = document.createElement('button');
+		enableStorageAccessButton.onclick = function () {
+			console.log('someone clicked the enableStorageAccessButton button')
+			makeRequestWithUserGesture()
+		};
+		enableStorageAccessButton.textContent = "Click me to set storage access";
+		document.body.appendChild(enableStorageAccessButton);
+
+		var checkStorageAccessButton = document.createElement('button');
+		checkStorageAccessButton.onclick = function () {
+			console.log('someone clicked the checkStorageAccessButton button');
+			checkPageHasStorageAccess();
+		};
+		checkStorageAccessButton.textContent = "Click me to set storage access";
+		document.body.appendChild(checkStorageAccessButton);
+	</script> -->
 </body>
+
 </html>
