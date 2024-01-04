@@ -15,6 +15,18 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 const isProd = import.meta.env.PROD;
 ---
 
+{ isProd &&
+  <!-- Google tag (gtag.js) -->
+	<script type="text/plain" data-cookiecategory="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-Q4PDJPNFVC"></script>
+	<script type="text/plain" data-cookiecategory="analytics">
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-Q4PDJPNFVC');
+	</script> 
+}
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -46,17 +58,3 @@ const isProd = import.meta.env.PROD;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
-
-
-
-{ isProd &&
-  <!-- Google tag (gtag.js) -->
-<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-Q4PDJPNFVC"></script>
-<script type="text/partytown">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Q4PDJPNFVC');
-</script>
-}
