@@ -1,6 +1,6 @@
 ---
 title: "Oh Hai!"
-description: "You know, a millenial hello world..."
+description: "You know, like a millenial hello world..."
 pubDate: "2024-01-08"
 heroImage: "/rubbishtom1.webp"
 heroImageAltText: "Cell shaded AI generated image of a white, blond, 30-something man that was supposed to look like the author but really really doesn't"
