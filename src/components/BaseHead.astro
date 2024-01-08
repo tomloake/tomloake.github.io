@@ -11,21 +11,30 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
+const { title, description, image = '/tom-loake.jpeg' } = Astro.props;
 const isProd = import.meta.env.PROD;
 ---
 
-{ isProd &&
-  <!-- Google tag (gtag.js) -->
-	<script type="text/plain" data-cookiecategory="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-Q4PDJPNFVC"></script>
-	<script type="text/plain" data-cookiecategory="analytics">
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+<!-- Google tag (gtag.js) -->
+<script type="text/plain" data-cookiecategory="analytics">
+	const gtagScript = document.createElement("script");
+	gtagScript.async = true;
+	gtagScript.type = "text/partytown";
+	gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-Q4PDJPNFVC";
+	document.head.appendChild(gtagScript);
 
-		gtag('config', 'G-Q4PDJPNFVC');
-	</script> 
-}
+	const scriptDataLayer = document.createElement("script");
+	scriptDataLayer.type = "text/partytown";
+	scriptDataLayer.innerHTML = `window.dataLayer = window.dataLayer || [];
+										function gtag(){dataLayer.push(arguments);}
+										gtag('js', new Date());
+
+										gtag('config', 'G-Q4PDJPNFVC');`;
+	document.head.appendChild(scriptDataLayer);
+
+	window.dispatchEvent(new CustomEvent("ptupdate"));
+</script> 
+
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
