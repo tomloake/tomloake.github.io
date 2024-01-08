@@ -4,6 +4,8 @@
 export const SITE_TITLE = "Tom Loake - Full Stack Engineer";
 export const SITE_DESCRIPTION = "Homepage for Tom loake, Full Stack Engineer";
 
+// TODO: tidy cookie consent config
+
 export const COOKIECONSENTCONFIG = {
   //   onFirstAction: function (user_preferences: any, cookie: any) {
   //     console.log("User accept type:", user_preferences.accept_type);
@@ -16,26 +18,26 @@ export const COOKIECONSENTCONFIG = {
   //       user_preferences.rejected_categories
   //     );
   //   },
-  //   onAccept: function (cookie: any) {
-  //     console.log("in onAccept");
+  // onAccept: function (cookie: any) {
+  //   console.log("in onAccept");
 
-  //     const gtagScript = document.createElement("script");
-  //     gtagScript.async = true;
-  //     gtagScript.type = "text/partytown";
-  //     gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-Q4PDJPNFVC";
-  //     document.head.appendChild(gtagScript);
+  //   const gtagScript = document.createElement("script");
+  //   gtagScript.async = true;
+  //   gtagScript.type = "text/partytown";
+  //   gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-Q4PDJPNFVC";
+  //   document.head.appendChild(gtagScript);
 
-  //     const scriptDataLayer = document.createElement("script");
-  //     scriptDataLayer.type = "text/partytown";
-  //     scriptDataLayer.innerHTML = `window.dataLayer = window.dataLayer || [];
-  // 	function gtag(){dataLayer.push(arguments);}
-  // 	gtag('js', new Date());
+  //   const scriptDataLayer = document.createElement("script");
+  //   scriptDataLayer.type = "text/partytown";
+  //   scriptDataLayer.innerHTML = `window.dataLayer = window.dataLayer || [];
+  // function gtag(){dataLayer.push(arguments);}
+  // gtag('js', new Date());
 
-  // 	gtag('config', 'G-Q4PDJPNFVC');`;
-  //     document.head.appendChild(scriptDataLayer);
+  // gtag('config', 'G-Q4PDJPNFVC');`;
+  //   document.head.appendChild(scriptDataLayer);
 
-  //     window.dispatchEvent(new CustomEvent("ptupdate"));
-  //   },
+  //   window.dispatchEvent(new CustomEvent("ptupdate"));
+  // },
   gui_options: {
     consent_modal: {
       layout: "cloud", // box/cloud/bar
